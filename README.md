@@ -13,10 +13,10 @@
 
 ## Features
 
-- [ ] Convert Arabic numbers to Roman numerals.
+- [x] Convert Arabic numbers to Roman numerals.
 
 
-- [ ] Print Roman numerals in ASCII art.
+- [x] Print Roman numerals in ASCII art.
 
 ## Contributors
 
