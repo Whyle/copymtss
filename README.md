@@ -1,7 +1,7 @@
 # Roman Number Converter  - MTSS Assignment 2
 
 
- ![Java CI with Maven](https://github.com/whyle/MTSS2/workflows/Java%20CI%20with%20Maven/badge.svg) ![](https://github.com/username/repository/workflows/Java%20CI%20with%20Maven/badge.svg) ![](https://github.com/username/repository/workflows/Java%20CI%20with%20Maven/badge.svg)
+ ![Java CI with Maven](https://github.com/whyle/MTSS2/workflows/Java%20CI%20with%20Maven/badge.svg) ![](https://github.com/username/repository/workflows/Java%20CI%20with%20Maven/badge.svg) ![](https://github.com/username/repository/workflows/Java%20CI%20with%20Maven/badge.svg) [![Coverage Status](https://coveralls.io/repos/github/Whyle/MTSS2/badge.svg?branch=main)](https://coveralls.io/github/Whyle/MTSS2?branch=main) 
 
 ## Description
 
