@@ -82,7 +82,7 @@ public class RomanPrinterTest {
     @Test(timeout=1000)
     public void test() {
         for(int i = 1; i<=1000; i++){
-            System.out.println(RomanPrinter.print(i) + "- " + i);
+            RomanPrinter.print(i);
         }
     }
 }
