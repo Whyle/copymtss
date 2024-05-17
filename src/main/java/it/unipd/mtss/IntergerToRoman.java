@@ -1,6 +1,6 @@
 package it.unipd.mtss;
 
-public class IntergerToRoman {
+public class IntegerToRoman {
   
   public static String convert(int number){
     //TODO
