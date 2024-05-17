@@ -14,14 +14,34 @@ jobs:
         distribution: 'temurin'
         java-version: 8.0.332+9
         cache: 'maven'
-    - name: "[1/4] Compile project"
+        - name: Get version
+      id: version
+      run: echo ::set-output name=version::$(mvn help:evaluate -Dexpression=project.version -q -DforceStdout)
+    - name: Get changelog
+      id: changelog
+      run: echo ::set-output name=changelog::$(git log --pretty=format:"%h %s" $(git describe --tags --abbrev=0)..HEAD)
+    - name: "[1/5] Compile project"
       run: mvn compile
-    - name: "[2/4] Test project"
+    - name: "[2/5] Test project"
       run: mvn test
-    - name: "[3/4] Static Analysis"
+    - name: "[3/5] Static Analysis"
       run: mvn verify
-    - name: "[4/4] Upload to Coveralls"
+    - name: "[4/5] Upload to Coveralls"
       uses: coverallsapp/github-action@v2
       with:
         github-token: ${{ secrets.GITHUB_TOKEN }}
         path-to-lcov: target/site/jacoco/jacoco.xml
+
+    # if is main branch and on push event, publish the release
+    # release target/*.jar to github releases
+    # with release name as "Release ${get pom.xml version}" and body as changelog
+    - name: "[5/5] Release project"
+      if: github.ref == 'refs/heads/main'
+      uses: softprops/action-gh-release@v1
+      with:
+        files: target/*.jar
+        token: ${{ secrets.GITHUB_TOKEN }}
+        body: |
+          ${{ steps.changelog.outputs.changelog }}
+        name: Release ${{ steps.version.outputs.version }}
+
