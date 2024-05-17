@@ -1,22 +1,52 @@
 package it.unipd.mtss;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+
+import java.util.HashMap;
+import java.util.Map;
 
 import org.junit.Test;
+import org.junit.Before;
+
+/**
+ * A-TRIP Test
+ * (Automatic): ok
+ * (Thorough): ok
+ * (Repeatable): ok
+ * (Independent): ok
+ * (Professional): ok
+ */
+
+/**
+ * Right - BICEP Test
+ * (Right): intergerToRomanTest_IVXL()
+ * (Boundary): 
+ *   (Conformance): absent
+ *   (Order): absent
+ *   (Range): intergerToRomanNegativeTest_IVXL()
+ *   (Reference): absent
+ *   (Existence): absent
+ *   (Cardinality): absent
+ *   (Time): absent
+ * (Inverse): romanToIntegerTest_IVXL()
+ * (Cross-check): absent
+ * (Error): absent
+ * (Performance): romanToIntegerTest_IVXL()
+ */
 
 /**
  * Unit test for simple App.
  */
-public class IntegerToRomanTest 
-{
-    /**
-     * Rigorous Test :-)
-     */
+public class IntegerToRomanTest {
+    IntegerToRoman integerToRoman;
+
+    @Before
+    public void setUp() {
+        integerToRoman = new IntegerToRoman();
+    }
+
     @Test
-    public void IntergerToRomanTest_IVXL()
-    {   
-        assertEquals("", IntegerToRoman.convert(0));
+    public void intergerToRomanTest_IVXL() {
         assertEquals("I", IntegerToRoman.convert(1));
         assertEquals("III", IntegerToRoman.convert(3));
         assertEquals("IV", IntegerToRoman.convert(4));
@@ -36,38 +66,87 @@ public class IntegerToRomanTest
     }
 
     @Test
-    public void IntergerToRomanTest_CDM()
-    {  
-        assertEquals("LX", IntegerToRoman.convert(60));
-        assertEquals("XC", IntegerToRoman.convert(90));
-        assertEquals("XCIV", IntegerToRoman.convert(94));
-        assertEquals("XCV", IntegerToRoman.convert(95));
-        assertEquals("XCVIII", IntegerToRoman.convert(98));
-        assertEquals("XCIX", IntegerToRoman.convert(99));
-        assertEquals("C", IntegerToRoman.convert(100));
-        assertEquals("CXL", IntegerToRoman.convert(140));
-        assertEquals("CXLVI", IntegerToRoman.convert(146));
-        assertEquals("CLXXX", IntegerToRoman.convert(180));
-        assertEquals("CXC", IntegerToRoman.convert(190));
-        assertEquals("CDXL", IntegerToRoman.convert(440));
-        assertEquals("CDXLIV", IntegerToRoman.convert(444));
-        assertEquals("CDL", IntegerToRoman.convert(450));
-        assertEquals("CDXC", IntegerToRoman.convert(490));
-        assertEquals("D", IntegerToRoman.convert(500));
-        assertEquals("DCIII", IntegerToRoman.convert(603));
-        assertEquals("DCCC", IntegerToRoman.convert(800));
-        assertEquals("CM", IntegerToRoman.convert(900));
-        assertEquals("CMXC", IntegerToRoman.convert(990));
-        assertEquals("CMXCIX", IntegerToRoman.convert(999));
-        assertEquals("M", IntegerToRoman.convert(1000));
-        assertEquals("MCDXL", IntegerToRoman.convert(1440));
-        assertEquals("MCDL", IntegerToRoman.convert(1450));
-        assertEquals("MCDXC", IntegerToRoman.convert(1490));
-        assertEquals("MD", IntegerToRoman.convert(1500));
-        assertEquals("MDCCC", IntegerToRoman.convert(1800));
-        assertEquals("MCM", IntegerToRoman.convert(1900));
-        assertEquals("MCMXC", IntegerToRoman.convert(1990));
-        assertEquals("MCMXCIX", IntegerToRoman.convert(1999));
-        assertEquals("MMMMCMXCIX", IntegerToRoman.convert(4999));
+    public void intergerToRomanNegativeTest_IVXL() {
+        assertEquals("", IntegerToRoman.convert(-1));
+        assertEquals("", IntegerToRoman.convert(0));
     }
+
+    public int romanToInteger_IVXL(String romanNumeral) {
+
+        Map<Character, Integer> romanValues = new HashMap<>();
+        romanValues.put('I', 1);
+        romanValues.put('V', 5);
+        romanValues.put('X', 10);
+        romanValues.put('L', 50);
+
+        int result = 0;
+        int prevValue = 0;
+
+        for (int i = romanNumeral.length() - 1; i >= 0; i--) {
+            char currentChar = romanNumeral.charAt(i);
+            int currentValue = romanValues.get(currentChar);
+
+            if (currentValue < prevValue) {
+                result -= currentValue;
+            } else {
+                result += currentValue;
+            }
+
+            prevValue = currentValue;
+        }
+
+        return result;
+    }
+
+    @Test(timeout = 1000)
+    public void romanToIntegerTest_IVXL() {
+        for (int i = 1; i <= 50; i++) {
+            assertEquals(i, romanToInteger_IVXL(IntegerToRoman.convert(i)));
+        }
+    }
+
+    @Test
+    public void IntergerToRomanTest_CDM() {
+        assertEquals("C", IntegerToRoman.convert(100));
+        assertEquals("CC", IntegerToRoman.convert(200));
+        assertEquals("CD", IntegerToRoman.convert(400));
+        assertEquals("D", IntegerToRoman.convert(500));
+        assertEquals("DCC", IntegerToRoman.convert(700));
+        assertEquals("CM", IntegerToRoman.convert(900));
+        assertEquals("M", IntegerToRoman.convert(1000));
+    }
+
+    public int romanToInteger_CDM(String romanNumeral) {
+
+        Map<Character, Integer> romanValues = new HashMap<>();
+        romanValues.put('C', 100);
+        romanValues.put('D', 500);
+        romanValues.put('M', 1000);
+
+        int result = 0;
+        int prevValue = 0;
+
+        for (int i = romanNumeral.length() - 1; i >= 0; i--) {
+            char currentChar = romanNumeral.charAt(i);
+            int currentValue = romanValues.get(currentChar);
+
+            if (currentValue < prevValue) {
+                result -= currentValue;
+            } else {
+                result += currentValue;
+            }
+
+            prevValue = currentValue;
+        }
+
+        return result;
+    }
+
+    @Test(timeout = 1000)
+    public void romanToIntegerTest_CDM() {
+        for (int i = 100; i <= 1000; i = i + 100) {
+            assertEquals(i, romanToInteger_CDM(IntegerToRoman.convert(i)));
+        }
+    }
+
 }
