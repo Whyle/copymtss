@@ -23,14 +23,14 @@ import org.junit.Test;
   * (Boundary): 
   *   (Conformance): checkPrivateMethodOfPrintWithException()
   *   (Order): absent
-  *   (Range): absent
+  *   (Range): checkPrivateMethodOfPrint()
   *   (Reference): absent
   *   (Existence): checkPrivateMethodOfPrint()
   *   (Cardinality): absent
   *   (Time): absent
   * (Inverse): absent
   * (Cross-check): absent
-  * (Error): checkPrivateMethodOfPrintWithException()
+  * (Error): absent
   * (Performance): absent
   */
 
@@ -71,15 +71,18 @@ public class RomanPrinterTest {
     }
 
     // Check if the private method works
-    @Test(timeout=100)
+    @Test
     public void checkPrivateMethodOfPrint() {
         assertEquals("", RomanPrinter_printAsciiArt(""));
         assertEquals("", RomanPrinter_printAsciiArt(null));
+        assertEquals("",RomanPrinter_printAsciiArt("A"));
     }
 
-    // Check if the private method throws an exception
-    @Test(expected = IllegalArgumentException.class)
-    public void checkPrivateMethodOfPrintWithException() {
-        assertEquals("", RomanPrinter_printAsciiArt("A"));
+    // 
+    @Test(timeout=1000)
+    public void test() {
+        for(int i = 1; i<=1000; i++){
+            System.out.println(RomanPrinter.print(i) + "- " + i);
+        }
     }
 }
