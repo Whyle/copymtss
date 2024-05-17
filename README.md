@@ -22,10 +22,22 @@
 
 - [x] Print Roman numerals in ASCII art.
 
+## Usage
+- Download the latest release from the [release page](https://github.com/Whyle/MTSS2/releases)
+- Java 8 or higher is required to run the program.
+
+Inline usage:
+```java
+java -jar MTSS2-[version].jar [..integers]
+```
+
+
+
+
 ## Contributors
 
-* Yixin Huang (2042347)
-* Yi Hao Zhuo (2044939)
+ - Yixin Huang (2042347)
+ - Yi Hao Zhuo (2044939)
 
 ---
 > [!IMPORTANT]
