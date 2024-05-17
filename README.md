@@ -31,9 +31,6 @@ Inline usage:
 java -jar MTSS2-[version].jar [..integers]
 ```
 
-
-
-
 ## Contributors
 
  - Yixin Huang (2042347)
