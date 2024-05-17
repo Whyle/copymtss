@@ -1,3 +1,8 @@
+////////////////////////////////////////
+// Yixin Huang 2042347
+// Yi Hao Zhuo 2044939
+////////////////////////////////////////
+
 package it.unipd.mtss;
 
 public class RomanNumber {
@@ -8,7 +13,6 @@ public class RomanNumber {
           | |     \ \/ /     > <   | |      | |      | |  | | | |\/| |
          _| |_     \  /     / . \  | |____  | |____  | |__| | | |  | |
         |_____|     \/     /_/ \_\ |______|  \_____| |_____/  |_|  |_|
-                                                                                                                                
      */
     public final static int lineHeight = 6;
 
