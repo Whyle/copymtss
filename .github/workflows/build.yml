@@ -37,11 +37,11 @@ jobs:
     # with release name as "Release ${get pom.xml version}" and body as changelog
     - name: "[5/5] Release project"
       if: github.ref == 'refs/heads/main'
-      uses: softprops/action-gh-release@v1
+      uses: softprops/action-gh-release@v2
       with:
         files: target/*.jar
-        token: ${{ secrets.GITHUB_TOKEN }}
         body: |
           ${{ steps.changelog.outputs.changelog }}
         name: Release ${{ steps.version.outputs.version }}
+        tag_name: v${{ steps.version.outputs.version }}
 
